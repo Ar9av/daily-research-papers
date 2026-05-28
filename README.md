@@ -12,4 +12,5 @@ Each folder is `YYYY-MM-DD-<arxiv-id>/` and contains:
 
 | Date | Paper | Skill |
 |------|-------|-------|
+| 2026-05-28 | [LACUNA](2026-05-28-2605.28617/paper.md) — Safe agents via typed holes: type-check generated code before it runs | [skill](2026-05-28-2605.28617/skill.md) |
 | 2026-05-27 | [MUSE-Autoskill](2026-05-27-2605.27366/paper.md) — Self-evolving agents via skill creation, memory & evaluation | [skill](2026-05-27-2605.27366/skill.md) |
