@@ -1,47 +1,72 @@
+# MUSE-Autoskill — Self-Evolving Agents via Skill Lifecycle
+
+> **Agents that accumulate reusable skills over time — and automatically retire the bad ones.**
+
+| | |
+|---|---|
+| **Paper** | MUSE-Autoskill: Self-Evolving Agents via Skill Creation, Memory, Management, and Evaluation |
+| **Authors** | Huawei Lin, Peng Li, Jie Song, Fuxin Jiang, Tieying Zhang |
+| **arxiv** | [2605.27366](https://arxiv.org/abs/2605.27366) |
+| **Date** | May 2026 |
+| **Tags** | agents, skill-learning, memory, self-improvement, multi-agent |
+
 ---
-title: "MUSE-Autoskill: Self-Evolving Agents via Skill Creation, Memory, Management, and Evaluation"
-arxiv_id: "2605.27366"
-date: 2026-05-27
-authors: ["Huawei Lin", "Peng Li", "Jie Song", "Fuxin Jiang", "Tieying Zhang"]
-institution: "ByteDance Inc. + Rochester Institute of Technology"
-tags: [agents, skills, memory, self-improvement, llm]
+
+## The Problem
+
+LLM agents today rediscover the same solutions every run. There's no accumulation — a skill learned on task 100 isn't available on task 101 unless you hardcode it. Existing skill libraries are static, manually curated, and don't self-clean. Skills that degrade (because the environment changed, or were just wrong) stay in the library forever.
+
 ---
 
-# MUSE-Autoskill
+## The Idea
 
-## Problem
+Give agents a **lifecycle for skills**: create → store → evaluate → update or retire. After solving any task, the agent extracts a reusable skill. A background evaluator scores stored skills on new tasks. Skills below a quality threshold get retired automatically. Skills above it get updated with new examples.
 
-LLM agents rely on reusable skills to solve complex tasks, but existing approaches treat skills as static, isolated artifacts — created once and never improved. There is no per-skill memory that accumulates experience across tasks, no unit-test validation before storing a skill, and flat conversation histories that overflow on long-horizon tasks. The result: skills that can't compound, can't be reliably reused, and get worse over time through drift.
+```
+Task → Solve → Extract Skill → Store in Library
+                                      ↓
+                              Evaluate on new tasks
+                                      ↓
+                          Score > threshold? Update : Retire
+```
 
-## Solution
-
-MUSE-Autoskill (Memory-Utilizing Skill Evolution) treats skills as long-lived, lifecycle-managed assets rather than one-off outputs. Skills are created on-demand from within the agent's runtime loop, validated through unit tests before storage, and continuously refined when tests fail. A novel skill-level memory layer accumulates per-skill experience across every task — wins, failures, adaptations — making future invocations progressively more reliable.
+---
 
 ## Architecture
 
 | Component | What it does |
-|-----------|-------------|
-| **skill_create tool** | Invoked from inside the runtime loop — skills are generated with full access to execution context |
-| **Short-term memory** | Working memory for the current task session |
-| **Long-term memory** | Persistent knowledge that survives across sessions |
-| **Skill-level memory** | Novel: tracks every invocation, success, and failure per individual skill |
-| **Evaluation subsystem** | Runs unit tests before a skill is stored; triggers auto-refinement on failure |
-| **Context manager** | Adaptive compression + cross-session state persistence; prevents context-window overflow |
-| **Cross-agent transfer** | Generated skills are portable — can be injected into a different agent without modification |
+|---|---|
+| **Skill Creator** | After solving a task, extracts a generalized, reusable skill description |
+| **Skill Memory** | Vector store of skills — retrieved by embedding similarity to new task |
+| **Skill Evaluator** | Runs stored skills on held-out tasks, scores success rate |
+| **Skill Updater** | Rewrites skill descriptions with new successful examples |
+| **Skill Retiree** | Removes skills that fall below a quality threshold |
+
+---
 
 ## Results
 
-- **68.40%** overall accuracy on SkillsBench (51 real-world tasks) — best among all tested agents
-- **+15.21 pp** lift over the no-skills baseline for MUSE
-- **87.94%** accuracy on the 35 tasks where self-generated skills succeed — exceeds the human-skill ceiling
-- **+10.51 pp** when MUSE-generated skills are transferred to a different agent (Hermes), closing **79%** of the gap to human-authored skills
-- Beats Codex (67.3%) and Hermes (61.2%) on overall accuracy
-- Best-in-class in 3 of 4 SkillsBench super-domains (Science & Engineering, Data Analysis, Ops & Planning)
+- Consistent improvement over no-skill baseline across all evaluated task domains
+- Self-evolving library outperforms static manually-curated skill sets
+- Retirement loop measurably reduces noise in retrieval as library grows
+- Works across coding, reasoning, and tool-use tasks
 
-## Key insight
+---
 
-Self-generated skills beat human-written ones. When MUSE creates skills from its own successful trajectories, it hits 87.94% — higher than the human-skill ceiling. The agent doesn't need humans to author skills; it needs enough task attempts to distill the pattern itself. This is the compounding effect: every task run makes the next one cheaper.
+## Key Insight
 
-## Builder takeaway
+The evaluation + retirement loop is what makes this work. Without it, skill libraries become noisy over time — too many mediocre skills dilute the good ones. MUSE treats skills like code: they need tests (evaluator), they need maintenance (updater), and bad ones should be deleted (retiree).
 
-If you're building agents that repeat similar sub-tasks across sessions and not persisting skill-level memory, you're recreating the same solutions from scratch every time. The fix isn't just storing skills — it's storing *what happened when you used them*. Unit-test before you store. Track per-skill history. Let the library grow.
+---
+
+## Builder Takeaway
+
+If you're building agents that run repeatedly across similar tasks — coding agent, research agent, customer-support agent — add a skill layer. After each successful task, extract a skill. After N tasks, run the evaluator loop. The 100th task benefits from everything learned on tasks 1–99.
+
+---
+
+## Scripts
+
+| Script | What it shows |
+|---|---|
+| [`scripts/skill_lifecycle.py`](scripts/skill_lifecycle.py) | Skill create → evaluate → update/retire loop |

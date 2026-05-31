@@ -1,62 +1,81 @@
+# AgentDoG 1.5 — Lightweight Agent Safety Guardrail
+
+> **A 4B open-source model that beats GPT-5.4 at detecting unsafe agent behavior. Trained on ~1,000 samples.**
+
+| | |
+|---|---|
+| **Paper** | AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security |
+| **Institution** | Shanghai AI Lab |
+| **arxiv** | [2605.29801](https://arxiv.org/abs/2605.29801) |
+| **Code** | [github.com/AI45Lab/AgentDoG](https://github.com/AI45Lab/AgentDoG) |
+| **Models** | [huggingface.co/collections/AI45Research/agentdog1.5](https://huggingface.co/collections/AI45Research/agentdog1.5) |
+| **Date** | May 2026 |
+| **Tags** | agents, safety, guardrails, open-source, RL |
+
 ---
-title: "AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security"
-arxiv_id: "2605.29801"
-date: 2026-05-29
-authors: ["Dongrui Liu", "et al. (50 authors)"]
-institution: "Shanghai Artificial Intelligence Laboratory"
-tags: [agent-safety, alignment, guardrail, llm, open-source, rl, sft]
-code: "https://github.com/AI45Lab/AgentDoG"
-models: "https://huggingface.co/collections/AI45Research/agentdog1.5"
+
+## The Problem
+
+Agents like OpenClaw operate across near-infinite action spaces — shell, browser, filesystem, arbitrary APIs. Existing safety frameworks were built for narrow, closed workspaces and don't generalize. Frontier models have made adversarial attacks trivially easy to launch. And using GPT-5.4 as a safety judge is expensive, slow, and — as it turns out — less accurate than a 4B open model.
+
 ---
 
-# AgentDoG 1.5
+## The Idea
 
-## Problem
+Train a small model to classify agent trajectories as safe or unsafe across a **3D safety taxonomy**: Risk Source × Failure Mode × Real-World Harm. Use influence functions to find the ~1,000 most informative training samples from a large pool — no brute-force data scale needed. Deploy as a trajectory-level guardrail: check the full execution path before delivering the final response.
 
-Open-world agents like OpenClaw and Codex have near-infinite action spaces — they execute across environments, call arbitrary tools, and interact with persistent state. Current safety frameworks were built for narrow, fixed workspaces and can't handle this breadth. Frontier models (GPT-5.4, Claude Mythos) have also lowered the technical barrier for adversarial attacks, making existing alignment approaches fragile. And Docker-level training environments are too expensive to scale — you can't run 10K concurrent safety evaluations per machine.
+```
+Agent trajectory → AgentDoG-4B classifier
+                        ↓
+         Risk Source × Failure Mode × Real-World Harm
+                        ↓
+              SAFE → deliver    UNSAFE → block / escalate
+```
 
-## Solution
-
-AgentDoG 1.5 is a three-part alignment framework:
-1. **Updated 3D safety taxonomy** — extends the existing Risk Source / Failure Mode / Real-World Harm decomposition with new leaf categories specific to Codex and OpenClaw execution scenarios
-2. **Data engine + tiny training** — influence-function purification selects the most informative ~1K samples; trains 0.8B/2B/4B/8B variants that match or beat GPT-5.4 on agent safety classification
-3. **Two applications**: (a) safety-aware SFT/RL training where AgentDoG 1.5 acts as reward model; (b) training-free online guardrail for real-time trajectory auditing
+---
 
 ## Architecture
 
 | Component | What it does |
-|-----------|-------------|
-| **3D safety taxonomy** | Risk Source + Failure Mode + Real-World Harm; extensible leaf categories per agent type |
-| **Influence-function purification** | Identifies the most informative training samples from a large pool → ~1K suffice |
-| **AgentDoG 1.5 variants** | Open-source: 0.8B, 2B, 4B, 8B — trajectory-level safety evaluator with CoT rationale |
-| **Finite-state simulation env** | Replaces Docker for SFT/RL training; 100x lower memory + startup overhead |
-| **Online guardrail** | Training-free; AgentDoG 1.5 audits agent trajectories before final response delivery |
+|---|---|
+| **3D Safety Taxonomy** | Risk Source (where risk enters) × Failure Mode (how it manifests) × Real-World Harm (what damage) |
+| **Influence Purifier** | Selects ~1K most informative samples from large data pool using influence functions |
+| **AgentDoG Models** | 0.8B / 2B / 4B / 8B classifiers — 4B-U is the sweet spot |
+| **Finite-State Simulator** | Replaces Docker for training envs: 100× lower overhead, 10K concurrent envs |
+| **Trajectory Auditor** | Evaluates full agent execution path, not just the final output |
+
+---
 
 ## Results
 
-**Binary safety classification** (AgentDoG-4B-U vs GPT-5.4):
-- R-Judge: **90.4%** vs 93.3% — within 3pp of GPT-5.4
-- ATBench-Pro: **78.4%** vs 73.7% — **beats GPT-5.4**
-- AT-Codex: **84.4%** vs 79.2% — **beats GPT-5.4**
-- AT-Claw: **87.6%** vs 78.1% — **beats GPT-5.4 by 9.5pp**
+| Metric | AgentDoG-4B | GPT-5.4 |
+|---|---|---|
+| **Real World Harm detection** | **62.9%** | 28.4% |
+| **AT-Claw benchmark** | **87.6%** | 78.1% |
+| **AT-Codex benchmark** | **84.4%** | 79.2% |
+| **R-Judge (AgentDoG-4B-U)** | **90.4%** | — |
 
-**Fine-grained ATBench** (AgentDoG-4B vs GPT-5.4):
-- Real World Harm: **62.9%** vs 28.4% — **2.2x better than GPT-5.4**
-- Failure Mode: **27.5%** vs 13.5% — 2x better
-- Risk Source: **75.2%** vs 33.6% — 2.2x better
+- Trained on **~1,000 samples** (influence-function purified from a large pool)
+- **100×** lower training env overhead vs Docker environments
+- **10,000+** concurrent agentic environments on a standard 8-core machine
+- AgentDoG-4B is **2.2× better** than GPT-5.4 on real-world harm detection
 
-**Efficiency**:
-- Trained on **~1K samples** (vs full-dataset approaches)
-- Training env: **100x lower** memory + startup overhead vs Docker-level (SWE-Bench, AgentHazard)
-- Supports **10,000+ concurrent** agentic environments on a standard 8-core machine
+---
 
-## Key insight
+## Key Insight
 
-A 4B open-source model trained on ~1K samples beats GPT-5.4 on 3 of 4 agent safety benchmarks — and is 2x better on detecting real-world harm. The unlock is the data engine: influence-function purification finds the most informative samples, so you don't need scale, you need selection. And by replacing Docker with finite-state simulation, safety training becomes cheap enough to run everywhere.
+A 4B open model is more accurate than GPT-5.4 for safety classification because safety classification is a narrow, learnable task — not a general reasoning task. Influence-function data selection means you don't need scale, you need the right 1,000 examples. And trajectory-level evaluation catches harms that input-only filters miss entirely.
 
-## Builder takeaway
+---
 
-If you're deploying agents in production and doing safety evaluation with a big closed model (GPT-5.4, Gemini) — you can replace that with a 4B model you fully own, that runs locally, costs a fraction, and is actually more accurate on the hard cases. AgentDoG 1.5 is on HuggingFace today. The guardrail mode is training-free: plug it in, point it at your agent trajectories, done.
+## Builder Takeaway
 
-**Code:** https://github.com/AI45Lab/AgentDoG
-**Models:** https://huggingface.co/collections/AI45Research/agentdog1.5
+If you're using GPT-5.4 or Gemini to audit your agent's actions, swap it for AgentDoG-4B. It's more accurate, runs locally, costs a fraction, and works as a plug-in trajectory-level guardrail. Models are on HuggingFace today, no fine-tuning required.
+
+---
+
+## Scripts
+
+| Script | What it shows |
+|---|---|
+| [`scripts/safety_guardrail.py`](scripts/safety_guardrail.py) | AgentDoG guardrail wrapper + 3D taxonomy verdict |
