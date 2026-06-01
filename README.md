@@ -13,6 +13,7 @@ Each folder is `YYYY-MM-DD-<arxiv-id>/` and contains:
 
 | Date | Paper | Skill | Scripts |
 |------|-------|-------|---------|
+| 2026-06-01 | [AutoSci](2026-06-01-2605.31468/paper.md) — Full research lifecycle agent: typed memory + Trust Guard + self-evolution → 6.3/10 ICLR score in 27 hours | [skill](2026-06-01-2605.31468/skill.md) | [scripts/](2026-06-01-2605.31468/scripts/) |
 | 2026-05-31 | [Saguaro (SSD)](2026-05-31-2603.03251/paper.md) — 30% faster than speculative decoding, 5× over autoregressive — parallelizes draft and verify | [skill](2026-05-31-2603.03251/skill.md) | [scripts/](2026-05-31-2603.03251/scripts/) |
 | 2026-05-30 | [AGENT-RADAR](2026-05-30-2605.30136/paper.md) — Training-free attention steering for multi-agent systems: +7.4 pts avg across 5 benchmarks | [skill](2026-05-30-2605.30136/skill.md) | [scripts/](2026-05-30-2605.30136/scripts/) |
 | 2026-05-29 | [AgentDoG 1.5](2026-05-29-2605.29801/paper.md) — 4B open model beats GPT-5.4 on agent safety, trained on ~1K samples | [skill](2026-05-29-2605.29801/skill.md) | [scripts/](2026-05-29-2605.29801/scripts/) |
