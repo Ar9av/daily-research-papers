@@ -13,6 +13,7 @@ Each folder is `YYYY-MM-DD-<arxiv-id>/` and contains:
 
 | Date | Paper | Skill | Scripts |
 |------|-------|-------|---------|
+| 2026-06-02 | [HypoAgent](2026-06-02-2605.31370/paper.md) — Surgical hypothesis repair over knowledge graphs: diagnose which fragment broke, fix only that — 78.1→94.0 Jaccard | [skill](2026-06-02-2605.31370/skill.md) | [scripts/](2026-06-02-2605.31370/scripts/) |
 | 2026-06-01 | [AutoSci](2026-06-01-2605.31468/paper.md) — Full research lifecycle agent: typed memory + Trust Guard + self-evolution → 6.3/10 ICLR score in 27 hours | [skill](2026-06-01-2605.31468/skill.md) | [scripts/](2026-06-01-2605.31468/scripts/) |
 | 2026-05-31 | [Saguaro (SSD)](2026-05-31-2603.03251/paper.md) — 30% faster than speculative decoding, 5× over autoregressive — parallelizes draft and verify | [skill](2026-05-31-2603.03251/skill.md) | [scripts/](2026-05-31-2603.03251/scripts/) |
 | 2026-05-30 | [AGENT-RADAR](2026-05-30-2605.30136/paper.md) — Training-free attention steering for multi-agent systems: +7.4 pts avg across 5 benchmarks | [skill](2026-05-30-2605.30136/skill.md) | [scripts/](2026-05-30-2605.30136/scripts/) |
