@@ -13,6 +13,7 @@ Each folder is `YYYY-MM-DD-<arxiv-id>/` and contains:
 
 | Date | Paper | Skill | Scripts |
 |------|-------|-------|---------|
+| 2026-06-04 | [AgingBench](2026-06-04-2605.26302/paper.md) — agents age after deployment even with frozen weights; four mechanisms (compression/interference/revision/maintenance), stage-level repair — 85% recall drop, 4.5× half-life from policy alone | [skill](2026-06-04-2605.26302/skill.md) | [scripts/](2026-06-04-2605.26302/scripts/) |
 | 2026-06-03 | [Code-on-Graph](2026-06-03-2606.03705/paper.md) — LLM reasons over KGs by writing code against schema-class interfaces, not raw triples — +10.5pp over SOTA, 93.5 on GrailQA | [skill](2026-06-03-2606.03705/skill.md) | [scripts/](2026-06-03-2606.03705/scripts/) |
 | 2026-06-02 | [HypoAgent](2026-06-02-2605.31370/paper.md) — Surgical hypothesis repair over knowledge graphs: diagnose which fragment broke, fix only that — 78.1→94.0 Jaccard | [skill](2026-06-02-2605.31370/skill.md) | [scripts/](2026-06-02-2605.31370/scripts/) |
 | 2026-06-01 | [AutoSci](2026-06-01-2605.31468/paper.md) — Full research lifecycle agent: typed memory + Trust Guard + self-evolution → 6.3/10 ICLR score in 27 hours | [skill](2026-06-01-2605.31468/skill.md) | [scripts/](2026-06-01-2605.31468/scripts/) |
