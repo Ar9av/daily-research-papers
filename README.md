@@ -13,6 +13,7 @@ Each folder is `YYYY-MM-DD-<arxiv-id>/` and contains:
 
 | Date | Paper | Skill | Scripts |
 |------|-------|-------|---------|
+| 2026-06-06 | [Knowledge Infusion Layers](2026-06-06-2606.06356/paper.md) — 4-layer framework for where knowledge enters generative models; 70.97% toxicity reduction, frozen backbones | [skill](2026-06-06-2606.06356/skill.md) | [scripts/](2026-06-06-2606.06356/scripts/) |
 | 2026-06-05 | [Benchmark Agent](2026-06-05-2606.06462/paper.md) — autonomous benchmark construction: 20× faster than humans, 97% acceptance, +17pp over direct LLM generation | [skill](2026-06-05-2606.06462/skill.md) | [scripts/](2026-06-05-2606.06462/scripts/) |
 | 2026-06-04 | [AgingBench](2026-06-04-2605.26302/paper.md) — agents age after deployment even with frozen weights; four mechanisms (compression/interference/revision/maintenance), stage-level repair — 85% recall drop, 4.5× half-life from policy alone | [skill](2026-06-04-2605.26302/skill.md) | [scripts/](2026-06-04-2605.26302/scripts/) |
 | 2026-06-03 | [Code-on-Graph](2026-06-03-2606.03705/paper.md) — LLM reasons over KGs by writing code against schema-class interfaces, not raw triples — +10.5pp over SOTA, 93.5 on GrailQA | [skill](2026-06-03-2606.03705/skill.md) | [scripts/](2026-06-03-2606.03705/scripts/) |
