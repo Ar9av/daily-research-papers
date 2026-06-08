@@ -13,6 +13,7 @@ Each folder is `YYYY-MM-DD-<arxiv-id>/` and contains:
 
 | Date | Paper | Skill | Scripts |
 |------|-------|-------|---------|
+| 2026-06-08 | [OpenSkill](2026-06-08-2606.06741/paper.md) — supervision-free agent self-evolution: builds skills + test suite from docs alone, 88.9% GT coverage, within 1–3pp of human | [skill](2026-06-08-2606.06741/skill.md) | [scripts/](2026-06-08-2606.06741/scripts/) |
 | 2026-06-07 | [SpatialUncertain](2026-06-07-2605.30557/paper.md) — VLMs score below random at knowing when perspective misleads them; visual input makes it worse (-35pp) | [skill](2026-06-07-2605.30557/skill.md) | [scripts/](2026-06-07-2605.30557/scripts/) |
 | 2026-06-06 | [Knowledge Infusion Layers](2026-06-06-2606.06356/paper.md) — 4-layer framework for where knowledge enters generative models; 70.97% toxicity reduction, frozen backbones | [skill](2026-06-06-2606.06356/skill.md) | [scripts/](2026-06-06-2606.06356/scripts/) |
 | 2026-06-05 | [Benchmark Agent](2026-06-05-2606.06462/paper.md) — autonomous benchmark construction: 20× faster than humans, 97% acceptance, +17pp over direct LLM generation | [skill](2026-06-05-2606.06462/skill.md) | [scripts/](2026-06-05-2606.06462/scripts/) |
