@@ -13,6 +13,7 @@ Each folder is `YYYY-MM-DD-<arxiv-id>/` and contains:
 
 | Date | Paper | Skill | Scripts |
 |------|-------|-------|---------|
+| 2026-06-10 | [Natural Backdoors in CodeLMs](2026-06-10-2606.10846/paper.md) — clean-trained code models hide triggers from data bias; one token swap moves an insecure snippet to #1 in search; only unlearning fixes it | [skill](2026-06-10-2606.10846/skill.md) | [scripts/](2026-06-10-2606.10846/scripts/) |
 | 2026-06-09 | [V-JEPA 2](2026-06-09-2506.09985/paper.md) — latent world model from internet video + 62hr robot fine-tuning; 75% pick-and-place zero-shot, 15× faster planning than video diffusion | [skill](2026-06-09-2506.09985/skill.md) | [scripts/](2026-06-09-2506.09985/scripts/) |
 | 2026-06-08 | [OpenSkill](2026-06-08-2606.06741/paper.md) — supervision-free agent self-evolution: builds skills + test suite from docs alone, 88.9% GT coverage, within 1–3pp of human | [skill](2026-06-08-2606.06741/skill.md) | [scripts/](2026-06-08-2606.06741/scripts/) |
 | 2026-06-07 | [SpatialUncertain](2026-06-07-2605.30557/paper.md) — VLMs score below random at knowing when perspective misleads them; visual input makes it worse (-35pp) | [skill](2026-06-07-2605.30557/skill.md) | [scripts/](2026-06-07-2605.30557/scripts/) |
