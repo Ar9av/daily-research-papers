@@ -13,6 +13,7 @@ Each folder is `YYYY-MM-DD-<arxiv-id>/` and contains:
 
 | Date | Paper | Skill | Scripts |
 |------|-------|-------|---------|
+| 2026-06-11 | [SCAIL-2](2026-06-11-2606.10804/paper.md) — end-to-end character animation without pose skeletons; 28-channel mask conditioning + mode-specific RoPE; 93.3% win on multi-character identity isolation | [skill](2026-06-11-2606.10804/skill.md) | [scripts/](2026-06-11-2606.10804/scripts/) |
 | 2026-06-10 | [Natural Backdoors in CodeLMs](2026-06-10-2606.10846/paper.md) — clean-trained code models hide triggers from data bias; one token swap moves an insecure snippet to #1 in search; only unlearning fixes it | [skill](2026-06-10-2606.10846/skill.md) | [scripts/](2026-06-10-2606.10846/scripts/) |
 | 2026-06-09 | [V-JEPA 2](2026-06-09-2506.09985/paper.md) — latent world model from internet video + 62hr robot fine-tuning; 75% pick-and-place zero-shot, 15× faster planning than video diffusion | [skill](2026-06-09-2506.09985/skill.md) | [scripts/](2026-06-09-2506.09985/scripts/) |
 | 2026-06-08 | [OpenSkill](2026-06-08-2606.06741/paper.md) — supervision-free agent self-evolution: builds skills + test suite from docs alone, 88.9% GT coverage, within 1–3pp of human | [skill](2026-06-08-2606.06741/skill.md) | [scripts/](2026-06-08-2606.06741/scripts/) |
