@@ -13,6 +13,7 @@ Each folder is `YYYY-MM-DD-<arxiv-id>/` and contains:
 
 | Date | Paper | Skill | Scripts |
 |------|-------|-------|---------|
+| 2026-06-13 | [CODE](2026-06-13-2601.13112/paper.md) — one poisoned RAG document causes 5–25× reasoning token inflation with no accuracy drop; tri-agent attack: Contradiction Architect + Conflict Weaver + Style Adapter | [skill](2026-06-13-2601.13112/skill.md) | [scripts/](2026-06-13-2601.13112/scripts/) |
 | 2026-06-12 | [SpatialClaw](2026-06-12-2606.13673/paper.md) — persistent Python kernel as action interface for spatial VLM agents; +11.2 pp over prior SOTA, 20 benchmarks, no model-specific tuning | [skill](2026-06-12-2606.13673/skill.md) | [scripts/](2026-06-12-2606.13673/scripts/) |
 | 2026-06-11 | [SCAIL-2](2026-06-11-2606.10804/paper.md) — end-to-end character animation without pose skeletons; 28-channel mask conditioning + mode-specific RoPE; 93.3% win on multi-character identity isolation | [skill](2026-06-11-2606.10804/skill.md) | [scripts/](2026-06-11-2606.10804/scripts/) |
 | 2026-06-10 | [Natural Backdoors in CodeLMs](2026-06-10-2606.10846/paper.md) — clean-trained code models hide triggers from data bias; one token swap moves an insecure snippet to #1 in search; only unlearning fixes it | [skill](2026-06-10-2606.10846/skill.md) | [scripts/](2026-06-10-2606.10846/scripts/) |
