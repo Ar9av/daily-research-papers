@@ -13,6 +13,7 @@ Each folder is `YYYY-MM-DD-<arxiv-id>/` and contains:
 
 | Date | Paper | Skill | Scripts |
 |------|-------|-------|---------|
+| 2026-06-15 | [MemJack](2026-06-15-2604.12616/paper.md) — any unmodified natural image is a jailbreak vector; 71% ASR on 5,000 COCO images; removing memory drops ASR 72→38%; direct refusal is the worst VLM defense | [skill](2026-06-15-2604.12616/skill.md) | [scripts/](2026-06-15-2604.12616/scripts/) |
 | 2026-06-14 | [Creative Machine](2026-06-14-2606.13196/paper.md) — 10 requirements for genuine machine creativity (Designics); R3/R7/R9 unsatisfied by all current AI; ethics must be internal to perception, not a post-generation filter | [skill](2026-06-14-2606.13196/skill.md) | [scripts/](2026-06-14-2606.13196/scripts/) |
 | 2026-06-13 | [CODE](2026-06-13-2601.13112/paper.md) — one poisoned RAG document causes 5–25× reasoning token inflation with no accuracy drop; tri-agent attack: Contradiction Architect + Conflict Weaver + Style Adapter | [skill](2026-06-13-2601.13112/skill.md) | [scripts/](2026-06-13-2601.13112/scripts/) |
 | 2026-06-12 | [SpatialClaw](2026-06-12-2606.13673/paper.md) — persistent Python kernel as action interface for spatial VLM agents; +11.2 pp over prior SOTA, 20 benchmarks, no model-specific tuning | [skill](2026-06-12-2606.13673/skill.md) | [scripts/](2026-06-12-2606.13673/scripts/) |
